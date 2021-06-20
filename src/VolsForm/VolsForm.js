@@ -8,25 +8,21 @@ class VolsForm extends Component {
     this.state = {
       checkboxes: [
         {
-          key: 1,
           id: "sanctuary",
           label: "Volunteering at animal sanctuary",
           isChecked: false,
         },
         {
-          key: 2,
           id: "research",
           label: "Academic style research and report writing",
           isChecked: false,
         },
         {
-          key: 3,
           id: "online",
           label: "Online activism, signing petitions, writing letters etc.",
           isChecked: false,
         },
         {
-          key: 4,
           id: "street",
           label: "Talking and interacting with the public",
           isChecked: false,

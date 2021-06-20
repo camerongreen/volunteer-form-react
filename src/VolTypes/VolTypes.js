@@ -13,8 +13,7 @@ class VolTypes extends Component {
     return (
       <ul id="volunteering-type">
         {
-          this.state.types.map((el, i) => <li key={el.key}><Checkbox
-            key={el.key}
+          this.state.types.map((el, i) => <li key={el.id.toString()}><Checkbox
             id={el.id}
             label={el.label}
             isChecked={el.isChecked}
