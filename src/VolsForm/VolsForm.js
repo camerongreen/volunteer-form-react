@@ -1,11 +1,13 @@
 import './VolsForm.css';
 import { Component } from 'react';
+import Header from '../Header/Header';
 import VolTypes from '../VolTypes/VolTypes';
 
 class VolsForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      step: 1,
       checkboxes: [
         {
           id: "sanctuary",
@@ -38,6 +40,7 @@ class VolsForm extends Component {
   render() {
     return (
       <div className="VolsForm">
+        <Header step={this.state.step} />
         <form>
           <VolTypes types={this.state.checkboxes} />
           <button type="submit" onClick={this.showOptions}>Show me</button>
