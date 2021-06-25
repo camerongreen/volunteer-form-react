@@ -6,13 +6,19 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      now: props.step * 25,
+      step: props.step,
     };
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.step !== this.props.step) {
+      this.setState({ step: this.props.step });
+    }
   }
 
   render() {
     return (
-      <ProgressBar now={this.state.now}  label={`${this.state.now}%`} />
+      <ProgressBar now={this.state.step * 25}  label={`${this.state.step * 25}%`} />
     );
   }
 }
