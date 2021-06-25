@@ -7,18 +7,20 @@ class Header extends Component {
     super(props);
     this.state = {
       step: props.step,
+      steps: props.steps,
     };
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.step !== this.props.step) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.step !== this.props.step) {
       this.setState({ step: this.props.step });
     }
   }
 
   render() {
     return (
-      <ProgressBar now={this.state.step * 25}  label={`${this.state.step * 25}%`} />
+      <ProgressBar now={Math.ceil(this.state.step * (100 / this.state.steps))}
+                   label={this.state.step + '/' + this.state.steps}/>
     );
   }
 }

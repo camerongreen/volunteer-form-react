@@ -11,6 +11,7 @@ class VolsForm extends Component {
     super(props)
     this.state = {
       step: 1,
+      maxSteps: 3,
       checkboxes: [
         {
           id: "sanctuary",
@@ -46,7 +47,7 @@ class VolsForm extends Component {
       buttons.push(<button type="button"
                          onClick={() => this.setState({ step: this.state.step - 1 })}>Back</button>);
     }
-    if (this.state.step === 3) {
+    if (this.state.step === this.state.maxSteps) {
       buttons.push(<button type="submit" onClick={() => this.showOptions}>Send
         enquiry</button>);
     } else {
@@ -56,7 +57,7 @@ class VolsForm extends Component {
     return (
       <BrowserRouter>
         <div className="VolsForm">
-          <Header step={this.state.step}/>
+          <Header step={this.state.step} steps={this.state.maxSteps}/>
           <Switch>
             <Route path={['/', '/volunteer-form/1']} exact={true}>
               <VolTypes types={this.state.checkboxes}/>
