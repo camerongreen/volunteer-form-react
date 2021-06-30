@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Buttons from '../Buttons/Buttons';
 import Choices from '../Choices/Choices';
 import Confirm from '../Confirm/Confirm';
 import Header from '../Header/Header';
@@ -42,34 +43,25 @@ class VolsForm extends Component {
   }
 
   render() {
-    let buttons = [];
-    if (this.state.step !== 1) {
-      buttons.push(<button type="button"
-                         onClick={() => this.setState({ step: this.state.step - 1 })}>Back</button>);
-    }
-    if (this.state.step === this.state.maxSteps) {
-      buttons.push(<button type="submit" onClick={() => this.showOptions}>Send
-        enquiry</button>);
-    } else {
-      buttons.push(<button type="button"
-                         onClick={() => this.setState({ step: this.state.step + 1 })}>Next</button>);
-    }
     return (
       <BrowserRouter>
         <div className="VolsForm">
           <Header step={this.state.step} steps={this.state.maxSteps}/>
           <Switch>
-            <Route path={['/', '/volunteer-form/1']} exact={true}>
+            <Route path={['/volunteer-form/1']} exact={true}>
+              <h2>Types of volunteering you're interested in</h2>
               <VolTypes types={this.state.checkboxes}/>
             </Route>
             <Route path="/volunteer-form/2" exact={true}>
+              <h2>Volunteering opportunities</h2>
               <Choices types={this.state.checkboxes}/>
             </Route>
             <Route path="/volunteer-form/3" exact={true}>
+              <h2>Enquire about volunteering with us</h2>
               <Confirm types={this.state.checkboxes}/>
             </Route>
           </Switch>
-          {buttons}
+          <Buttons step={this.state.step} steps={this.state.maxSteps}/>
         </div>
       </BrowserRouter>
     );
