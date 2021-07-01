@@ -5,22 +5,32 @@ class Buttons extends Component {
     super(props)
     this.state = {
       step: props.step,
-      maxSteps: props.steps
+      maxSteps: props.steps,
+      handler: props.handler,
     }
   }
 
   render() {
     let buttons = [];
     if (this.state.step !== 1) {
-      buttons.push(<button type="button"
-                         onClick={() => this.setState({ step: this.state.step - 1 })}>Back</button>);
+      buttons.push(<button key={this.state.step - 1} type="button"
+                           onClick={(event) => {
+                             this.setState({ step: this.state.step - 1 });
+                             this.state.handler(event, this.state.step - 1)
+                           }}>Back</button>);
     }
     if (this.state.step === this.state.maxSteps) {
-      buttons.push(<button type="submit" onClick={() => this.showOptions}>Send
+      buttons.push(<button type="submit" key={this.state.maxSteps}
+                           onClick={(event) => {
+                             this.state.handler(event, this.state.step + 1)
+                           }}>Send
         enquiry</button>);
     } else {
-      buttons.push(<button type="button"
-                         onClick={() => this.setState({ step: this.state.step + 1 })}>Next</button>);
+      buttons.push(<button key={this.state.step + 1} type="button"
+                           onClick={(event) => {
+                             this.setState({ step: this.state.step + 1 });
+                             this.state.handler(event, this.state.step + 1)
+                           }}>Next</button>);
     }
     return buttons;
   }

@@ -38,7 +38,8 @@ class VolsForm extends Component {
     }
   }
 
-  showOptions(event) {
+  navClickHandler(event, step) {
+    console.log('State:' + step);
     event.preventDefault();
   }
 
@@ -61,7 +62,8 @@ class VolsForm extends Component {
               <Confirm types={this.state.checkboxes}/>
             </Route>
           </Switch>
-          <Buttons step={this.state.step} steps={this.state.maxSteps}/>
+          <Buttons step={this.state.step} steps={this.state.maxSteps}
+                   handler={this.navClickHandler}/>
         </div>
       </BrowserRouter>
     );
